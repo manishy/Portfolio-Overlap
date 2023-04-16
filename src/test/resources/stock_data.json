@@ -1,0 +1,23 @@
+{
+  "funds": [
+    {
+      "name": "ICICI_PRU_NIFTY_NEXT_50_INDEX",
+      "stocks": [
+        "INDRAPRASTHA GAS LIMITED"
+      ]
+    },
+    {
+      "name": "PARAG_PARIKH_CONSERVATIVE_HYBRID",
+      "stocks": [
+        "INDRAPRASTHA GAS LIMITED",
+        "SONA BLW PRECISION FORGINGS LIMITED",
+        "ADITYA BIRLA FASHION AND RETAIL LIMITED",
+        "GRINDWELL NORTON LIMITED",
+        "3M INDIA LIMITED",
+        "COROMANDEL INTERNATIONAL LIMITED",
+        "TTK PRESTIGE LIMITED",
+        "ACC LIMITED"
+      ]
+    }
+  ]
+}
