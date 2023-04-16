@@ -3,13 +3,13 @@ package com.fabric.models;
 import java.util.ArrayList;
 
 public class FundDataStore {
-    private ArrayList<FundDetails> funds;
+    private ArrayList<MutualFund> funds;
 
-    public ArrayList<FundDetails> getFunds() {
+    public ArrayList<MutualFund> getFunds() {
         return funds;
     }
 
-    public void setFunds(ArrayList<FundDetails> funds) {
+    public void setFunds(ArrayList<MutualFund> funds) {
         this.funds = funds;
     }
 }

@@ -2,7 +2,7 @@ package com.fabric.models;
 
 import java.util.Set;
 
-public class FundDetails {
+public class MutualFund {
     public String name;
     public Set<String> stocks;
     public Set<String> getStocks() {

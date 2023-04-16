@@ -1,6 +1,6 @@
 package com.fabric;
 
-import com.fabric.models.FundDetails;
+import com.fabric.models.MutualFund;
 import com.fabric.models.FundDataStore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,7 +22,7 @@ public class MutualFundDataStore {
     private void initialise() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         FundDataStore fundDataStore = mapper.readValue(sourceFile, FundDataStore.class);
-        this.mutualFundStockMap = fundDataStore.getFunds().stream().collect(Collectors.toMap(FundDetails::getName, FundDetails::getStocks));
+        this.mutualFundStockMap = fundDataStore.getFunds().stream().collect(Collectors.toMap(MutualFund::getName, MutualFund::getStocks));
     }
 
     public Set<String> getStocksFor(String mutualFund) throws Exception {
