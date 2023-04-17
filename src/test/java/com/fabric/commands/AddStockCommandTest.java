@@ -1,9 +1,7 @@
 package com.fabric.commands;
 
-import com.fabric.DummyDataStore;
-import com.fabric.PortFolio;
+import com.fabric.mocks.DummyDataStore;
 import com.fabric.command.AddStockCommand;
-import com.fabric.command.CurrentPortfolioCommand;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

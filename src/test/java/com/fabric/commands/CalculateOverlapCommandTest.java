@@ -1,6 +1,6 @@
 package com.fabric.commands;
 
-import com.fabric.DummyDataStore;
+import com.fabric.mocks.DummyDataStore;
 import com.fabric.PortFolio;
 import com.fabric.Printer;
 import com.fabric.command.CalculateOverlapCommand;

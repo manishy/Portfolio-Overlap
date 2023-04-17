@@ -1,5 +1,6 @@
 package com.fabric;
 
+import com.fabric.mocks.DummyDataStore;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

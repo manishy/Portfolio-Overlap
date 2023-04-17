@@ -1,4 +1,6 @@
-package com.fabric;
+package com.fabric.mocks;
+
+import com.fabric.DataStore;
 
 import java.util.*;
 import java.util.stream.Collectors;
