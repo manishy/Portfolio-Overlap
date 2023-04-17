@@ -6,5 +6,5 @@ public interface DataStore {
 
     Set<String> getStocksFor(String mutualFund) throws Exception;
 
-    Set<String> addStockFor(String mutualFund, String stockName) throws Exception;
+    void addStockFor(String mutualFund, String stockName) throws Exception;
 }

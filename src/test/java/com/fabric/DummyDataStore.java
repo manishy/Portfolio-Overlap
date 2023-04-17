@@ -33,9 +33,8 @@ public class DummyDataStore implements DataStore {
     }
 
     @Override
-    public Set<String> addStockFor(String mutualFund, String stockName) throws RuntimeException {
+    public void addStockFor(String mutualFund, String stockName) throws RuntimeException {
         Set<String> currentStocks = getStocksFor(mutualFund);
         currentStocks.add(stockName);
-        return currentStocks;
     }
 }

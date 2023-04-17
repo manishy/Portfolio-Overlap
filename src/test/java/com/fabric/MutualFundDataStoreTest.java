@@ -22,7 +22,7 @@ class MutualFundDataStoreTest {
         mutualFundDataStore = new MutualFundDataStore(srcFile);
     }
     @Test
-    public void getStocksForShouldThrowExceptionIfStockNotFound() throws IOException, URISyntaxException {
+    public void getStocksForShouldThrowExceptionIfStockNotFound() {
         assertThrows(Exception.class, () -> {
             mutualFundDataStore.getStocksFor("SOME_INVALID_FUND");
         });
@@ -38,8 +38,9 @@ class MutualFundDataStoreTest {
 
     @Test
     void addStockForShouldAddStockToAFund() throws Exception {
-        Set<String> updatedStocks = mutualFundDataStore.addStockFor("ICICI_PRU_NIFTY_NEXT_50_INDEX", "TEST STOCK");
-        assertEquals(2,updatedStocks.size());
+        mutualFundDataStore.addStockFor("ICICI_PRU_NIFTY_NEXT_50_INDEX", "TEST STOCK");
+        Set<String> updatedStocks = mutualFundDataStore.getStocksFor("ICICI_PRU_NIFTY_NEXT_50_INDEX");
+                assertEquals(2,updatedStocks.size());
         assertEquals(Arrays.asList("INDRAPRASTHA GAS LIMITED", "TEST STOCK"),updatedStocks.stream().collect(Collectors.toList()));
     }
 

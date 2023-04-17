@@ -36,9 +36,8 @@ public class MutualFundDataStore implements DataStore {
     }
 
     @Override
-    public Set<String> addStockFor(String mutualFund, String stockName) throws Exception {
+    public void addStockFor(String mutualFund, String stockName) throws Exception {
         Set<String> currentStocks = getStocksFor(mutualFund);
         currentStocks.add(stockName);
-        return currentStocks;
     }
 }
