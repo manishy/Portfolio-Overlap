@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FundOverlapCalculator {
-    public String calculateOverlap(Set<String> firstStock, Set<String> secondStock) {
+    public String calculate(Set<String> firstStock, Set<String> secondStock) {
         int totalStocksCount = firstStock.size() + secondStock.size();
         ArrayList unionStockList = new ArrayList<String>();
         unionStockList.addAll(firstStock);

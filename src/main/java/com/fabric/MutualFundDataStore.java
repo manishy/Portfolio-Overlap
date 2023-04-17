@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,7 @@ public class MutualFundDataStore implements DataStore {
     @Override
     public Set<String> getStocksFor(String mutualFund) throws Exception {
         Set<String> stocks = this.mutualFundStockMap.get(mutualFund);
-        if (stocks == null) {
+        if (Objects.isNull(stocks)) {
             throw new Exception("FUND_NOT_FOUND");
         }
         return stocks;
