@@ -2,6 +2,7 @@ package com.fabric.command;
 
 import com.fabric.DataStore;
 import com.fabric.PortFolio;
+import com.fabric.Printer;
 import com.fabric.utils.FundOverlapCalculator;
 
 import java.util.Set;
@@ -9,10 +10,12 @@ import java.util.Set;
 public class CalculateOverlapCommand implements Command {
     private PortFolio portFolio;
     private DataStore dataStore;
+    private Printer printer;
 
-    public CalculateOverlapCommand(PortFolio portFolio, DataStore dataStore) {
+    public CalculateOverlapCommand(PortFolio portFolio, DataStore dataStore, Printer printer) {
         this.portFolio = portFolio;
         this.dataStore = dataStore;
+        this.printer = printer;
     }
 
     public void Execute(String command) throws Exception {
@@ -23,13 +26,13 @@ public class CalculateOverlapCommand implements Command {
                 Set<String> currentFundStock = dataStore.getStocksFor(currentFund);
                 String overlapPercent = new FundOverlapCalculator().calculate(currentFundStock, requestedFundStocks);
                 if (Double.parseDouble(overlapPercent) > (double) 0) {
-                    System.out.println(fund + " " + currentFund + " " + overlapPercent + "%");
+                    printer.print(fund + " " + currentFund + " " + overlapPercent + "%");
                 }
             }
 
         } catch (Exception exception) {
             if (("FUND_NOT_FOUND").equals(exception.getMessage())) {
-                System.out.println(exception.getMessage());
+                printer.print(exception.getMessage());
             }
             throw new Exception();
         }

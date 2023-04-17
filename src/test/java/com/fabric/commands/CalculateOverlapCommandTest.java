@@ -2,6 +2,7 @@ package com.fabric.commands;
 
 import com.fabric.DummyDataStore;
 import com.fabric.PortFolio;
+import com.fabric.Printer;
 import com.fabric.command.CalculateOverlapCommand;
 import com.fabric.command.CurrentPortfolioCommand;
 import org.junit.jupiter.api.AfterEach;
@@ -36,7 +37,7 @@ public class CalculateOverlapCommandTest {
         CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand(portFolio);
         currentPortfolioCommand.Execute(currentPortfolioInstruction);
         String calculateOverlapInstruction = "CALCULATE_OVERLAP MIRAE_ASSET_LARGE_CAP";
-        CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore);
+        CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore, new Printer());
         calculateOverlapCommand.Execute(calculateOverlapInstruction);
         assertEquals("MIRAE_ASSET_LARGE_CAP AXIS_BLUECHIP 40.00%\n" +
                 "MIRAE_ASSET_LARGE_CAP ICICI_PRU_BLUECHIP 33.33%\n" +
@@ -51,7 +52,7 @@ public class CalculateOverlapCommandTest {
         CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand(portFolio);
         currentPortfolioCommand.Execute(currentPortfolioInstruction);
         String calculateOverlapInstruction = "CALCULATE_OVERLAP MIRAE_ASSET_EMERGING_BLUECHIP";
-        CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore);
+        CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore, new Printer());
         calculateOverlapCommand.Execute(calculateOverlapInstruction);
         assertEquals("", outputStreamCaptor.toString());
     }
@@ -64,7 +65,7 @@ public class CalculateOverlapCommandTest {
         CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand(portFolio);
         currentPortfolioCommand.Execute(currentPortfolioInstruction);
         String calculateOverlapInstruction = "CALCULATE_OVERLAP INVALID_FUND";
-        CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore);
+        CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore, new Printer());
         assertThrows(Exception.class, () -> {
             calculateOverlapCommand.Execute(calculateOverlapInstruction);
         });
