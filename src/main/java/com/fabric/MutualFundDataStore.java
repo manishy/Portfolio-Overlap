@@ -1,7 +1,7 @@
 package com.fabric;
 
-import com.fabric.models.MutualFund;
 import com.fabric.models.FundDataStore;
+import com.fabric.models.MutualFund;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;

@@ -3,7 +3,6 @@ package com.fabric.command;
 import com.fabric.PortFolio;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class CurrentPortfolioCommand implements Command {
 
