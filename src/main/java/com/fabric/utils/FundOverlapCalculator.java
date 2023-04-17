@@ -8,10 +8,10 @@ import java.util.Set;
 public class FundOverlapCalculator {
     public String calculate(Set<String> firstStock, Set<String> secondStock) {
         int totalStocksCount = firstStock.size() + secondStock.size();
-        ArrayList unionStockList = new ArrayList<String>();
+        ArrayList<String> unionStockList = new ArrayList<>();
         unionStockList.addAll(firstStock);
         unionStockList.addAll(secondStock);
-        HashSet uniqueStockList = new HashSet<String>(unionStockList);
+        HashSet<String> uniqueStockList = new HashSet<>(unionStockList);
         int commonStockCount = totalStocksCount - uniqueStockList.size();
         DecimalFormat df = new DecimalFormat("#.##");
         df.setMinimumFractionDigits(2);
