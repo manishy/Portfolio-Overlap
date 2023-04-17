@@ -12,6 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculateOverlapCommandTest {
     private final PrintStream standardOut = System.out;
@@ -40,5 +41,33 @@ public class CalculateOverlapCommandTest {
         assertEquals("MIRAE_ASSET_LARGE_CAP AXIS_BLUECHIP 40.00%\n" +
                 "MIRAE_ASSET_LARGE_CAP ICICI_PRU_BLUECHIP 33.33%\n" +
                 "MIRAE_ASSET_LARGE_CAP UTI_NIFTY_INDEX 40.00%\n", outputStreamCaptor.toString());
+    }
+
+    @Test
+    public void shouldNotCalculateFundOverlapIfOverlapPercentageIsZeroOrLess() throws Exception {
+        DummyDataStore dataStore = new DummyDataStore();
+        PortFolio portFolio = new PortFolio();
+        String currentPortfolioInstruction = "CURRENT_PORTFOLIO AXIS_BLUECHIP";
+        CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand(portFolio);
+        currentPortfolioCommand.Execute(currentPortfolioInstruction);
+        String calculateOverlapInstruction = "CALCULATE_OVERLAP MIRAE_ASSET_EMERGING_BLUECHIP";
+        CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore);
+        calculateOverlapCommand.Execute(calculateOverlapInstruction);
+        assertEquals("", outputStreamCaptor.toString());
+    }
+
+    @Test
+    public void shouldLogErrorAndThrowExceptionIfRequestedFundNotFound() {
+        DummyDataStore dataStore = new DummyDataStore();
+        PortFolio portFolio = new PortFolio();
+        String currentPortfolioInstruction = "CURRENT_PORTFOLIO AXIS_BLUECHIP";
+        CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand(portFolio);
+        currentPortfolioCommand.Execute(currentPortfolioInstruction);
+        String calculateOverlapInstruction = "CALCULATE_OVERLAP INVALID_FUND";
+        CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore);
+        assertThrows(Exception.class, () -> {
+            calculateOverlapCommand.Execute(calculateOverlapInstruction);
+        });
+        assertEquals("FUND_NOT_FOUND\n", outputStreamCaptor.toString());
     }
 }

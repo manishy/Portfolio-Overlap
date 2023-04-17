@@ -17,20 +17,21 @@ public class CalculateOverlapCommand implements Command {
 
     public void Execute(String command) throws Exception {
         String fund = command.split(" ")[1];
-        Set<String> requestedFundStocks = dataStore.getStocksFor(fund);
-        for (String currentFund : this.portFolio.getFunds()) {
-            try {
+        try {
+            Set<String> requestedFundStocks = dataStore.getStocksFor(fund);
+            for (String currentFund : this.portFolio.getFunds()) {
                 Set<String> currentFundStock = dataStore.getStocksFor(currentFund);
                 String overlapPercent = new FundOverlapCalculator().calculate(currentFundStock, requestedFundStocks);
                 if (Double.parseDouble(overlapPercent) > (double) 0) {
                     System.out.println(fund + " " + currentFund + " " + overlapPercent + "%");
                 }
-            } catch (Exception exception) {
-                if (("FUND_NOT_FOUND").equals(exception.getMessage())) {
-                    System.out.println(exception.getMessage());
-                }
-                throw new Exception();
             }
+
+        } catch (Exception exception) {
+            if (("FUND_NOT_FOUND").equals(exception.getMessage())) {
+                System.out.println(exception.getMessage());
+            }
+            throw new Exception();
         }
     }
 }
