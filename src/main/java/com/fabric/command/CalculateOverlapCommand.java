@@ -18,7 +18,7 @@ public class CalculateOverlapCommand implements Command {
         this.printer = printer;
     }
 
-    public void Execute(String command) throws Exception {
+    public void execute(String command) throws Exception {
         String fund = command.split(" ")[1];
         try {
             Set<String> requestedFundStocks = dataStore.getStocksFor(fund);

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 
-public class CommandExecuter {
+public class CommandExecuter implements Command {
     private DataStore dataStore;
     private PortFolio portFolio;
     HashMap<String, Command> commandsMap = new HashMap<>();
@@ -27,8 +27,9 @@ public class CommandExecuter {
         commandsMap.put("ADD_STOCK", new AddStockCommand(this.dataStore));
     }
 
+    @Override
     public void execute(String instructions) throws Exception {
         String command = Arrays.stream(instructions.split(" ")).collect(Collectors.toList()).get(0);
-        commandsMap.get(command).Execute(instructions);
+        commandsMap.get(command).execute(instructions);
     }
 }

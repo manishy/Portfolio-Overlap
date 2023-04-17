@@ -14,7 +14,7 @@ public class CurrentPortfolioCommandTest {
         String command = "CURRENT_PORTFOLIO AXIS_BLUECHIP ICICI_PRU_BLUECHIP UTI_NIFTY_INDEX";
         PortFolio portFolio = new PortFolio();
         CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand(portFolio);
-        currentPortfolioCommand.Execute(command);
+        currentPortfolioCommand.execute(command);
         assertEquals(Arrays.asList("AXIS_BLUECHIP", "ICICI_PRU_BLUECHIP", "UTI_NIFTY_INDEX"), portFolio.getFunds());
     }
 }

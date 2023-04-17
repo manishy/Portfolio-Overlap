@@ -14,7 +14,7 @@ public class AddStockCommand implements Command {
     }
 
     @Override
-    public void Execute(String command) throws Exception {
+    public void execute(String command) throws Exception {
         String[] args = command.split(" ");
         String[] instruction = Arrays.copyOfRange(command.split(" "), 1, args.length);
         String fundName = instruction[0];

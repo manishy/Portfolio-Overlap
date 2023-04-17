@@ -35,10 +35,10 @@ public class CalculateOverlapCommandTest {
         PortFolio portFolio = new PortFolio();
         String currentPortfolioInstruction = "CURRENT_PORTFOLIO AXIS_BLUECHIP ICICI_PRU_BLUECHIP UTI_NIFTY_INDEX";
         CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand(portFolio);
-        currentPortfolioCommand.Execute(currentPortfolioInstruction);
+        currentPortfolioCommand.execute(currentPortfolioInstruction);
         String calculateOverlapInstruction = "CALCULATE_OVERLAP MIRAE_ASSET_LARGE_CAP";
         CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore, new Printer());
-        calculateOverlapCommand.Execute(calculateOverlapInstruction);
+        calculateOverlapCommand.execute(calculateOverlapInstruction);
         assertEquals("MIRAE_ASSET_LARGE_CAP AXIS_BLUECHIP 40.00%\n" +
                 "MIRAE_ASSET_LARGE_CAP ICICI_PRU_BLUECHIP 33.33%\n" +
                 "MIRAE_ASSET_LARGE_CAP UTI_NIFTY_INDEX 40.00%\n", outputStreamCaptor.toString());
@@ -50,10 +50,10 @@ public class CalculateOverlapCommandTest {
         PortFolio portFolio = new PortFolio();
         String currentPortfolioInstruction = "CURRENT_PORTFOLIO AXIS_BLUECHIP";
         CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand(portFolio);
-        currentPortfolioCommand.Execute(currentPortfolioInstruction);
+        currentPortfolioCommand.execute(currentPortfolioInstruction);
         String calculateOverlapInstruction = "CALCULATE_OVERLAP MIRAE_ASSET_EMERGING_BLUECHIP";
         CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore, new Printer());
-        calculateOverlapCommand.Execute(calculateOverlapInstruction);
+        calculateOverlapCommand.execute(calculateOverlapInstruction);
         assertEquals("", outputStreamCaptor.toString());
     }
 
@@ -63,11 +63,11 @@ public class CalculateOverlapCommandTest {
         PortFolio portFolio = new PortFolio();
         String currentPortfolioInstruction = "CURRENT_PORTFOLIO AXIS_BLUECHIP";
         CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand(portFolio);
-        currentPortfolioCommand.Execute(currentPortfolioInstruction);
+        currentPortfolioCommand.execute(currentPortfolioInstruction);
         String calculateOverlapInstruction = "CALCULATE_OVERLAP INVALID_FUND";
         CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore, new Printer());
         assertThrows(Exception.class, () -> {
-            calculateOverlapCommand.Execute(calculateOverlapInstruction);
+            calculateOverlapCommand.execute(calculateOverlapInstruction);
         });
         assertEquals("FUND_NOT_FOUND\n", outputStreamCaptor.toString());
     }

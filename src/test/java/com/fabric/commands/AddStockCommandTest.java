@@ -18,7 +18,7 @@ public class AddStockCommandTest {
         Set<String> axisBlueChipStocksBeforeUpdate = dataStore.getStocksFor("AXIS_BLUECHIP");
         assertEquals(Arrays.asList("INFOSYS LIMITED", "BHARTI AIRTEL LIMITED"), axisBlueChipStocksBeforeUpdate.stream().collect(Collectors.toList()));
         AddStockCommand addStockCommand = new AddStockCommand(dataStore);
-        addStockCommand.Execute(command);
+        addStockCommand.execute(command);
         Set<String> axisBlueChipStocks = dataStore.getStocksFor("AXIS_BLUECHIP");
         assertEquals(Arrays.asList("INFOSYS LIMITED", "BHARTI AIRTEL LIMITED", "HDFC BANK LIMITED"), axisBlueChipStocks.stream().collect(Collectors.toList()));
     }
