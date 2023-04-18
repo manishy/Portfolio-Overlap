@@ -3,9 +3,9 @@ echo ""
 echo ""
 echo "SAMPLE INPUT-OUTPUT 1"
 echo ""
-java -jar build/libs/geektrust.jar sampleInput/input1.txt
+java -jar build/libs/geektrust.jar sample_input/input1.txt
 echo ""
 echo ""
 echo "SAMPLE INPUT-OUTPUT 2"
 echo ""
-java -jar build/libs/geektrust.jar sampleInput/input2.txt
+java -jar build/libs/geektrust.jar sample_input/input2.txt
