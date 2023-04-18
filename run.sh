@@ -1,2 +1,11 @@
 gradle clean build -x test --no-daemon
-java -jar build/libs/geektrust.jar
+echo ""
+echo ""
+echo "SAMPLE INPUT-OUTPUT 1"
+echo ""
+java -jar build/libs/geektrust.jar sampleInput/input1.txt
+echo ""
+echo ""
+echo "SAMPLE INPUT-OUTPUT 2"
+echo ""
+java -jar build/libs/geektrust.jar sampleInput/input2.txt
