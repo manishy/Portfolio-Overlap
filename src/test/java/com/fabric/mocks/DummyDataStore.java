@@ -1,6 +1,7 @@
 package com.fabric.mocks;
 
 import com.fabric.DataStore;
+import com.fabric.exception.FundNotFoundException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -26,16 +27,16 @@ public class DummyDataStore implements DataStore {
     }
 
     @Override
-    public Set<String> getStocksFor(String mutualFund) throws RuntimeException {
+    public Set<String> getStocksFor(String mutualFund) throws FundNotFoundException {
         Set<String> stockList = this.stockMappings.get(mutualFund);
         if (Objects.isNull(stockList)) {
-            throw new RuntimeException("FUND_NOT_FOUND");
+            throw new FundNotFoundException();
         }
         return stockList;
     }
 
     @Override
-    public void addStockFor(String mutualFund, String stockName) throws RuntimeException {
+    public void addStockFor(String mutualFund, String stockName) throws Exception {
         Set<String> currentStocks = getStocksFor(mutualFund);
         currentStocks.add(stockName);
     }

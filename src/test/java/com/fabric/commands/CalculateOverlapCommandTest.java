@@ -1,10 +1,10 @@
 package com.fabric.commands;
 
-import com.fabric.mocks.DummyDataStore;
 import com.fabric.PortFolio;
 import com.fabric.Printer;
 import com.fabric.command.CalculateOverlapCommand;
 import com.fabric.command.CurrentPortfolioCommand;
+import com.fabric.mocks.DummyDataStore;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculateOverlapCommandTest {
     private final PrintStream standardOut = System.out;
@@ -58,7 +57,7 @@ public class CalculateOverlapCommandTest {
     }
 
     @Test
-    public void shouldLogErrorAndThrowExceptionIfRequestedFundNotFound() {
+    public void shouldLogErrorMessageIfRequestedFundNotFound() throws Exception {
         DummyDataStore dataStore = new DummyDataStore();
         PortFolio portFolio = new PortFolio();
         String currentPortfolioInstruction = "CURRENT_PORTFOLIO AXIS_BLUECHIP";
@@ -66,9 +65,7 @@ public class CalculateOverlapCommandTest {
         currentPortfolioCommand.execute(currentPortfolioInstruction);
         String calculateOverlapInstruction = "CALCULATE_OVERLAP INVALID_FUND";
         CalculateOverlapCommand calculateOverlapCommand = new CalculateOverlapCommand(portFolio, dataStore, new Printer());
-        assertThrows(Exception.class, () -> {
-            calculateOverlapCommand.execute(calculateOverlapInstruction);
-        });
+        calculateOverlapCommand.execute(calculateOverlapInstruction);
         assertEquals("FUND_NOT_FOUND\n", outputStreamCaptor.toString());
     }
 }

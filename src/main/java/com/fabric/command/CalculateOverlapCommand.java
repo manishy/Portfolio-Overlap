@@ -3,6 +3,7 @@ package com.fabric.command;
 import com.fabric.DataStore;
 import com.fabric.PortFolio;
 import com.fabric.Printer;
+import com.fabric.exception.FundNotFoundException;
 import com.fabric.utils.FundOverlapCalculator;
 
 import java.util.Set;
@@ -18,7 +19,7 @@ public class CalculateOverlapCommand implements Command {
         this.printer = printer;
     }
 
-    public void execute(String command) throws Exception {
+    public void execute(String command) {
         String fund = command.split(" ")[1];
         try {
             Set<String> requestedFundStocks = dataStore.getStocksFor(fund);
@@ -30,11 +31,8 @@ public class CalculateOverlapCommand implements Command {
                 }
             }
 
-        } catch (Exception exception) {
-            if (("FUND_NOT_FOUND").equals(exception.getMessage())) {
-                printer.print(exception.getMessage());
-            }
-            throw new Exception();
+        } catch (FundNotFoundException exception) {
+            printer.print(exception.getMessage());
         }
     }
 }

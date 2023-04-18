@@ -4,7 +4,6 @@ import com.fabric.DataStore;
 
 import java.util.Arrays;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class AddStockCommand implements Command {
     private DataStore dataStore;

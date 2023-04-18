@@ -1,36 +1,38 @@
 package com.fabric;
 
+import com.fabric.exception.FundNotFoundException;
 import com.fabric.models.FundDataStore;
 import com.fabric.models.MutualFund;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MutualFundDataStore implements DataStore {
-    private File sourceFile;
+    private String sourceFile;
     private Map<String, Set<String>> mutualFundStockMap;
 
-    MutualFundDataStore(File sourceFile) throws IOException {
+    MutualFundDataStore(String sourceFile) throws IOException {
         this.sourceFile = sourceFile;
         this.initialise();
     }
 
     private void initialise() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        FundDataStore fundDataStore = mapper.readValue(sourceFile, FundDataStore.class);
+        InputStream resourceAsStream = ClassLoader.getSystemClassLoader().getResourceAsStream(sourceFile);
+        FundDataStore fundDataStore = mapper.readValue(resourceAsStream, FundDataStore.class);
         this.mutualFundStockMap = fundDataStore.getFunds().stream().collect(Collectors.toMap(MutualFund::getName, MutualFund::getStocks));
     }
 
     @Override
-    public Set<String> getStocksFor(String mutualFund) throws Exception {
+    public Set<String> getStocksFor(String mutualFund) throws FundNotFoundException {
         Set<String> stocks = this.mutualFundStockMap.get(mutualFund);
         if (Objects.isNull(stocks)) {
-            throw new Exception("FUND_NOT_FOUND");
+            throw new FundNotFoundException();
         }
         return stocks;
     }

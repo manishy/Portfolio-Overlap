@@ -3,7 +3,6 @@ package com.fabric;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
@@ -17,9 +16,7 @@ class MutualFundDataStoreTest {
     MutualFundDataStore mutualFundDataStore;
     @BeforeEach
     void setUp() throws IOException, URISyntaxException {
-        String sourceFileName = "stock_data.json";
-        File srcFile = new File(Thread.currentThread().getContextClassLoader().getResource(sourceFileName).toURI());
-        mutualFundDataStore = new MutualFundDataStore(srcFile);
+        mutualFundDataStore = new MutualFundDataStore("stock_data.json");
     }
     @Test
     public void getStocksForShouldThrowExceptionIfStockNotFound() {

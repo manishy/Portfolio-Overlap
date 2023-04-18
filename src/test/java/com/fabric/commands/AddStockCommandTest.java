@@ -1,7 +1,7 @@
 package com.fabric.commands;
 
-import com.fabric.mocks.DummyDataStore;
 import com.fabric.command.AddStockCommand;
+import com.fabric.mocks.DummyDataStore;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
