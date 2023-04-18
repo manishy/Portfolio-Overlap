@@ -15,7 +15,7 @@ class CommandExecuterTest {
     void shouldExecuteAGivenSetOfInstructions() throws Exception {
         PortFolio portFolio = new PortFolio();
         DummyDataStore dataStore = new DummyDataStore();
-        CommandExecuter commandExecuter = new CommandExecuter(dataStore, portFolio);
+        CommandExecuter commandExecuter = new CommandExecuter(dataStore, portFolio, new Printer());
         commandExecuter.execute("CURRENT_PORTFOLIO AXIS_BLUECHIP ICICI_PRU_BLUECHIP UTI_NIFTY_INDEX");
         assertEquals(portFolio.getFunds(), Arrays.asList("AXIS_BLUECHIP", "ICICI_PRU_BLUECHIP", "UTI_NIFTY_INDEX"));
         commandExecuter.execute("ADD_STOCK AXIS_BLUECHIP NOCIL");

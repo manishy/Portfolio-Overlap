@@ -13,17 +13,19 @@ import java.util.stream.Collectors;
 public class CommandExecuter implements Command {
     private DataStore dataStore;
     private PortFolio portFolio;
+    private Printer printer;
     HashMap<String, Command> commandsMap = new HashMap<>();
 
-    public CommandExecuter(DataStore dataStore, PortFolio portFolio) {
+    public CommandExecuter(DataStore dataStore, PortFolio portFolio, Printer printer) {
         this.dataStore = dataStore;
         this.portFolio = portFolio;
+        this.printer = printer;
         setUp();
     }
 
     private void setUp() {
         commandsMap.put("CURRENT_PORTFOLIO", new CurrentPortfolioCommand(this.portFolio));
-        commandsMap.put("CALCULATE_OVERLAP", new CalculateOverlapCommand(this.portFolio, this.dataStore, new Printer()));
+        commandsMap.put("CALCULATE_OVERLAP", new CalculateOverlapCommand(this.portFolio, this.dataStore, this.printer));
         commandsMap.put("ADD_STOCK", new AddStockCommand(this.dataStore));
     }
 

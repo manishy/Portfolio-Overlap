@@ -11,7 +11,7 @@ public class Main {
         try {
             Path inputFilePath = Paths.get(args[0]);
             MutualFundDataStore mutualFundDataStore = new MutualFundDataStore(dataSourceFileName);
-            CommandExecuter commandExecuter = new CommandExecuter(mutualFundDataStore, new PortFolio());
+            CommandExecuter commandExecuter = new CommandExecuter(mutualFundDataStore, new PortFolio(), new Printer());
             List<String> instructions = Files.readAllLines(inputFilePath);
             for (String instruction : instructions) commandExecuter.execute(instruction);
         } catch (Exception e) {
