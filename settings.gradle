@@ -1,2 +1,3 @@
 rootProject.name = 'MyFundAndStocks'
+include 'sampleInput'
 
