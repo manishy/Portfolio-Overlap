@@ -8,13 +8,13 @@ import com.fabric.command.CurrentPortfolioCommand;
 import java.util.HashMap;
 
 
-public class CommandExecuter implements Command {
+public class CommandInvoker {
     private DataStore dataStore;
     private PortFolio portFolio;
     private Printer printer;
     HashMap<String, Command> commandsMap = new HashMap<>();
 
-    public CommandExecuter(DataStore dataStore, PortFolio portFolio, Printer printer) {
+    public CommandInvoker(DataStore dataStore, PortFolio portFolio, Printer printer) {
         this.dataStore = dataStore;
         this.portFolio = portFolio;
         this.printer = printer;
@@ -27,8 +27,7 @@ public class CommandExecuter implements Command {
         commandsMap.put("ADD_STOCK", new AddStockCommand(this.dataStore));
     }
 
-    @Override
-    public void execute(String instructions) throws Exception {
+    public void invoke(String instructions) throws Exception {
         String command = instructions.split(" ")[0];
         commandsMap.get(command).execute(instructions);
     }
