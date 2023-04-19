@@ -1,3 +1,4 @@
+#!/bin/bash
 gradle clean build -x test --no-daemon
 echo ""
 echo ""
