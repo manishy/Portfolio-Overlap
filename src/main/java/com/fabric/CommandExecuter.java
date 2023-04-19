@@ -5,9 +5,7 @@ import com.fabric.command.CalculateOverlapCommand;
 import com.fabric.command.Command;
 import com.fabric.command.CurrentPortfolioCommand;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 
 public class CommandExecuter implements Command {
@@ -31,7 +29,7 @@ public class CommandExecuter implements Command {
 
     @Override
     public void execute(String instructions) throws Exception {
-        String command = Arrays.stream(instructions.split(" ")).collect(Collectors.toList()).get(0);
+        String command = instructions.split(" ")[0];
         commandsMap.get(command).execute(instructions);
     }
 }
