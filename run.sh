@@ -1,5 +1,5 @@
 #!/bin/bash
-gradle clean build -x test --no-daemon
+./gradlew clean build -x test --no-daemon
 echo ""
 echo ""
 echo "SAMPLE INPUT-OUTPUT 1"
