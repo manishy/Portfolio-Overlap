@@ -11,9 +11,9 @@ public class Main {
         try {
             Path inputFilePath = Paths.get(args[0]);
             MutualFundDataStore mutualFundDataStore = new MutualFundDataStore(dataSourceFileName);
-            CommandInvoker commandInvoker = new CommandInvoker(mutualFundDataStore, new PortFolio(), new Printer());
+            CommandInvoker commandInvoker = new CommandInvoker(mutualFundDataStore, new Printer());
             List<String> instructions = Files.readAllLines(inputFilePath);
-            for (String instruction : instructions) commandInvoker.invoke(instruction);
+            for (String instruction : instructions) commandInvoker.invoke(new PortFolio(), instruction);
         } catch (Exception e) {
             System.out.println("SOMETHING_WENT_WRONG");
         }

@@ -9,21 +9,19 @@ import com.fabric.utils.FundOverlapCalculator;
 import java.util.Set;
 
 public class CalculateOverlapCommand implements Command {
-    private PortFolio portFolio;
-    private DataStore dataStore;
-    private Printer printer;
+    private final DataStore dataStore;
+    private final Printer printer;
 
-    public CalculateOverlapCommand(PortFolio portFolio, DataStore dataStore, Printer printer) {
-        this.portFolio = portFolio;
+    public CalculateOverlapCommand(DataStore dataStore, Printer printer) {
         this.dataStore = dataStore;
         this.printer = printer;
     }
 
-    public void execute(String command) {
+    public void execute(String command, PortFolio portFolio) {
         String fund = command.split(" ")[1];
         try {
             Set<String> requestedFundStocks = dataStore.getStocksFor(fund);
-            for (String currentFund : this.portFolio.getFunds()) {
+            for (String currentFund : portFolio.getFunds()) {
                 Set<String> currentFundStock = dataStore.getStocksFor(currentFund);
                 String overlapPercent = new FundOverlapCalculator().calculate(currentFundStock, requestedFundStocks);
                 if (Double.parseDouble(overlapPercent) > (double) 0) {

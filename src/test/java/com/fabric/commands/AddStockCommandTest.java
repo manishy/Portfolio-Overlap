@@ -1,5 +1,6 @@
 package com.fabric.commands;
 
+import com.fabric.PortFolio;
 import com.fabric.command.AddStockCommand;
 import com.fabric.mocks.DummyDataStore;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ public class AddStockCommandTest {
         Set<String> axisBlueChipStocksBeforeUpdate = dataStore.getStocksFor("AXIS_BLUECHIP");
         assertEquals(Arrays.asList("INFOSYS LIMITED", "BHARTI AIRTEL LIMITED"), axisBlueChipStocksBeforeUpdate.stream().collect(Collectors.toList()));
         AddStockCommand addStockCommand = new AddStockCommand(dataStore);
-        addStockCommand.execute(command);
+        addStockCommand.execute(command, new PortFolio());
         Set<String> axisBlueChipStocks = dataStore.getStocksFor("AXIS_BLUECHIP");
         assertEquals(Arrays.asList("INFOSYS LIMITED", "BHARTI AIRTEL LIMITED", "HDFC BANK LIMITED"), axisBlueChipStocks.stream().collect(Collectors.toList()));
     }

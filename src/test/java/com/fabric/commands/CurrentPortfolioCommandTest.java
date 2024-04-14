@@ -13,8 +13,8 @@ public class CurrentPortfolioCommandTest {
     void execute() {
         String command = "CURRENT_PORTFOLIO AXIS_BLUECHIP ICICI_PRU_BLUECHIP UTI_NIFTY_INDEX";
         PortFolio portFolio = new PortFolio();
-        CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand(portFolio);
-        currentPortfolioCommand.execute(command);
+        CurrentPortfolioCommand currentPortfolioCommand = new CurrentPortfolioCommand();
+        currentPortfolioCommand.execute(command, portFolio);
         assertEquals(Arrays.asList("AXIS_BLUECHIP", "ICICI_PRU_BLUECHIP", "UTI_NIFTY_INDEX"), portFolio.getFunds());
     }
 }

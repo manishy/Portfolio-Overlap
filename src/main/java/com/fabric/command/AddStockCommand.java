@@ -1,19 +1,20 @@
 package com.fabric.command;
 
 import com.fabric.DataStore;
+import com.fabric.PortFolio;
 
 import java.util.Arrays;
 import java.util.Set;
 
 public class AddStockCommand implements Command {
-    private DataStore dataStore;
+    private final DataStore dataStore;
 
     public AddStockCommand(DataStore dataStore) {
         this.dataStore = dataStore;
     }
 
     @Override
-    public void execute(String command) throws Exception {
+    public void execute(String command, PortFolio portFolio) throws Exception {
         String[] args = command.split(" ");
         String[] instruction = Arrays.copyOfRange(command.split(" "), 1, args.length);
         String fundName = instruction[0];

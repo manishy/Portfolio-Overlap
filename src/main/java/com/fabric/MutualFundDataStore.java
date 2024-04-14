@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MutualFundDataStore implements DataStore {
-    private String sourceFile;
+    private final String sourceFile;
     private Map<String, Set<String>> mutualFundStockMap;
 
     MutualFundDataStore(String sourceFile) throws IOException {
