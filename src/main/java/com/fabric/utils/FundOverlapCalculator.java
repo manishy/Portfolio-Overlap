@@ -15,7 +15,7 @@ public class FundOverlapCalculator {
         int commonStockCount = totalStocksCount - uniqueStockList.size();
         DecimalFormat df = new DecimalFormat("#.##");
         df.setMinimumFractionDigits(2);
-        double overlap = (200 * (double) commonStockCount / totalStocksCount);
+        double overlap = (2 * ((double) commonStockCount / totalStocksCount) * 100);
         return df.format(overlap);
     }
 }
